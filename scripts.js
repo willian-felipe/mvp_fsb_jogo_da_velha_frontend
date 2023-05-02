@@ -126,6 +126,35 @@ const post = async (nomeX, nomeO) => {
       body: formData
     })
     .then((response) => response.json())
+    .then((data) => {
+      partidaCorrente = data;
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+
+const put = async (disputa_id, jogo) => {
+  const formData = new FormData();
+  formData.append('disputa_id', disputa_id);
+
+  for (let i = 0; i < jogo.length; i++) {
+    formData.append('jogo', jogo[i]);
+  }
+
+  let url = endpoint + 'disputa/checaresultado';
+  fetch(url, {
+      method: 'put',
+      body: formData
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      partidaCorrente = data.partida;
+
+      if (data.finalizado) {
+        alert("o vencedor foi: " + data.vencedor);
+      }
+    })
     .catch((error) => {
       console.error('Error:', error);
     });
@@ -147,7 +176,6 @@ const start = async () => {
   } else {
     post(nomeX, nomeO)
       .then(() => {
-        // 
         criaJogo();
         alert("Disputa iniciada!");
       });
@@ -176,6 +204,7 @@ const init = () => {
   resetJogo();
   getList();
 }
+
 
 /*
   --------------------------------------------------------------------------------------
