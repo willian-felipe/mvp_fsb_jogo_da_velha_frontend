@@ -7,11 +7,22 @@ var dataHistoric = [];
   --------------------------------------------------------------------------------------
 */
 const insertButton = (parent) => {
-  let span = document.createElement("span");
-  let txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  parent.appendChild(span);
+  // <img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15px" height="15px"></img>
+
+  let img = document.createElement("img");
+  img.src = "https://cdn-icons-png.flaticon.com/512/126/126468.png";
+  img.style.width = "15px";
+  img.style.height = "15px";
+  img.className = "trash";
+
+  parent.appendChild(img);
+
+
+  // let span = document.createElement("span");
+  // let txt = document.createTextNode("\u00D7");
+  // span.className = "close";
+  // span.appendChild(txt);
+  // parent.appendChild(span);
 }
 
 /*
@@ -20,18 +31,24 @@ const insertButton = (parent) => {
   --------------------------------------------------------------------------------------
 */
 const removeElement = () => {
-  let close = document.getElementsByClassName("close");
-  // var table = document.getElementById('tblHistoric');
-  let i;
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function () {
-      let div = this.parentElement.parentElement;
-      const nomeItem = div.getElementsByTagName('td')[0].innerHTML
+  let trash = document.getElementsByClassName("trash");
 
-      if (confirm("Você tem certeza?")) {
-        div.remove();
-        deleteItem(nomeItem);
-        alert("Removido!");
+  for (let i = 0; i < trash.length; i++) {
+    trash[i].onclick = function () {
+      let div = this.parentElement.parentElement;
+
+      const jogX = div.getElementsByTagName('td')[0].innerHTML;
+      const jogO = div.getElementsByTagName('td')[2].innerHTML;
+
+      if (confirm("Você tem certeza que deseja excluir o histórico entre " + jogX + " vs " + jogO + "?")) {
+        for (let i = 0; i < dataHistoric.length; i++) {
+          if (jogX == dataHistoric[i].nomeX && jogO == dataHistoric[i].nomeO) {
+            div.remove();
+            deleteItem(dataHistoric[i].id);
+            alert("A disputa entre " + jogX + " vs " + jogO + " foi excluída!");
+            break;
+          }
+        }
       }
     }
   }
@@ -46,6 +63,7 @@ const resetTable = () => {
     table.deleteRow(i);
   }
 }
+
 /*
   --------------------------------------------------------------------------------------
   Função para inserir items na lista apresentada
@@ -77,8 +95,7 @@ const insertList = (item) => {
   --------------------------------------------------------------------------------------
 */
 const deleteItem = (item) => {
-  console.log(item)
-  let url = endpoint + 'disputa?nome=' + item;
+  let url = endpoint + 'disputa?id=' + item;
   fetch(url, {
       method: 'delete'
     })
@@ -128,36 +145,20 @@ const post = async (nomeX, nomeO) => {
     .then((response) => response.json())
     .then((data) => {
       partidaCorrente = data;
+      setJogadores();
     })
     .catch((error) => {
       console.error('Error:', error);
     });
 }
 
-const put = async (disputa_id, jogo) => {
-  const formData = new FormData();
-  formData.append('disputa_id', disputa_id);
+const btnNewMatch = async () => {
+  resetMatch();
+}
 
-  for (let i = 0; i < jogo.length; i++) {
-    formData.append('jogo', jogo[i]);
-  }
-
-  let url = endpoint + 'disputa/checaresultado';
-  fetch(url, {
-      method: 'put',
-      body: formData
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      partidaCorrente = data.partida;
-
-      if (data.finalizado) {
-        alert("o vencedor foi: " + data.vencedor);
-      }
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+const btnFinish = async () => {
+  resetJogo();
+  alert("Disputa Finalizada!");
 }
 
 /*
@@ -186,23 +187,23 @@ const start = async () => {
 const criaJogo = () => {
   var containerHistoric = document.getElementById('containerHistoric');
   containerHistoric.style.display = "none";
-  getList();
 
   var containerJogo = document.getElementById('containerJogo');
-  containerJogo.style.display = "flex";
+  containerJogo.style.display = "block";
 }
 
 const resetJogo = () => {
   var containerHistoric = document.getElementById('containerHistoric');
-  containerHistoric.style.display = "flex";
+  containerHistoric.style.display = "block";
 
   var containerJogo = document.getElementById('containerJogo');
   containerJogo.style.display = "none";
+
+  getList();
 }
 
 const init = () => {
   resetJogo();
-  getList();
 }
 
 

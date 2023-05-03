@@ -14,55 +14,69 @@
      <!-- Cabeçalho de informações do sistema -->
     <header>
         <div class="title">
-            <h2>Jogo da Velha</h2>
+            <h2>MVP - Jogo da Velha</h2>
         </div>
         <div class="banner">
-            <!-- <img src="https://images.contentstack.io/v3/assets/blt45c082eaf9747747/bltbcca43584b660977/5de0b6aa703bd50385f981ad/Header-5.jpg?width=1200&height=630&fit=crop"
-                alt="y"> -->
-                <img src="https://img.tapimg.net/market/images/88f4b9fbb2ca0c9abb8411bc22949257.png?imageView2/0/w/720/h/405/q/80/format/jpg/interlace/1/ignore-error/1"
-                alt="y">
+                <img src="./assets/banner_blue.png" alt="y" />
         </div>
     </header>
 
-     <!-- Opções para adicionar um novo item -->
-    <section class="newItem">
-        <input type="text" class="inputNome" id="nomeX" placeholder="Jogador X">
-        <input type="text" class="inputNome" id="nomeO" placeholder="Jogador O">
-        <span onclick="start()" class="addBtn">Iniciar Disputa</span>
-    </section>
+    <section  id="containerHistoric">
+        <!-- Opções para adicionar um novo item -->
+        <div class="newItem">
+            <input type="text" class="inputNome" id="nomeX" placeholder="Jogador X">
+            <input type="text" class="inputNome" id="nomeO" placeholder="Jogador O">
+            <span onclick="start()" class="btn-default btn-add">Iniciar Disputa</span>
+        </div>
 
-    <!-- Tabela com items existentes -->
-    <section class="containerHistoric" id="containerHistoric">
-        <table id="tblHistoric">
-            <tr>
-                <th>Jogador X</th>
-                <th>Pontos X</th>
-                <th>Jogador O</th>
-                <th>Pontos O</th>
-                <th>Velha</th>
-                <th><img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15px" height="15px"></th>
-            </tr>
-        </table>
+        <!-- Tabela com items existentes -->
+        <div class="tblHistoric">
+            <table id="tblHistoric">
+                <tr>
+                    <th>Jogador X</th>
+                    <th>Pontos X</th>
+                    <th>Jogador O</th>
+                    <th>Pontos O</th>
+                    <th>Velha</th>
+                    <th>
+                        <!-- <img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15px" height="15px"> -->
+                    </th>
+                </tr>
+            </table>
+        </div>
     </section>
     
     <section class="containerJogo" id="containerJogo">
-        <table id="tblJogo">
-            <tr>
-                <td id="td0" onclick="definirJogada(0)"></td>
-                <td id="td1" onclick="definirJogada(1)"></td>
-                <td id="td2" onclick="definirJogada(2)"></td>
-            </tr>
-            <tr>
-                <td id="td3" onclick="definirJogada(3)"></td>
-                <td id="td4" onclick="definirJogada(4)"></td>
-                <td id="td5" onclick="definirJogada(5)"></td>
-            </tr>
-            <tr>
-                <td id="td6" onclick="definirJogada(6)"></td>
-                <td id="td7" onclick="definirJogada(7)"></td>
-                <td id="td8" onclick="definirJogada(8)"></td>
-            </tr>
-        </table>
+        <div class="headFooterJogo">
+            <div id="jogoNomeX">Testes</div>
+            <div id="jogoNomeO">Tests OOO</div>
+        </div>
+        <div class="tblJogo">
+            <table>
+                <tr>
+                    <td class="tdJogo" id="td0" onclick="definirJogada(0)"></td>
+                    <td class="tdJogo" id="td1" onclick="definirJogada(1)"></td>
+                    <td class="tdJogo" id="td2" onclick="definirJogada(2)"></td>
+                </tr>
+                <tr>
+                    <td class="tdJogo" id="td3" onclick="definirJogada(3)"></td>
+                    <td class="tdJogo" id="td4" onclick="definirJogada(4)"></td>
+                    <td class="tdJogo" id="td5" onclick="definirJogada(5)"></td>
+                </tr>
+                <tr>
+                    <td class="tdJogo" id="td6" onclick="definirJogada(6)"></td>
+                    <td class="tdJogo" id="td7" onclick="definirJogada(7)"></td>
+                    <td class="tdJogo" id="td8" onclick="definirJogada(8)"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="headFooterJogo">
+            <div id="jogoVelha">Velha</div>
+            <div style="padding: 14px">
+                <span onclick="btnNewMatch()" class="btn-default btn-new-match">Nova Partida</span>
+                <span onclick="btnFinish()" class="btn-default btn-finish">Finalizar Disputa</span>
+            </div>
+        </div>
     </section>
 
     <script src="jogo_da_velha.js"></script>

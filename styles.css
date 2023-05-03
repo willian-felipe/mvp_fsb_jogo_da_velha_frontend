@@ -1,3 +1,7 @@
+body {
+    background-image: linear-gradient(to bottom, #3f48cc, #a9a9a9, #3f48cc);
+}
+
 body,
 ul,
 li {
@@ -36,7 +40,6 @@ header {
 }
 
 .newItem {
-    background-color: rgb(225, 222, 199);
     padding: 30px 40px;
     color: white;
     display: flex;
@@ -57,7 +60,7 @@ header {
     font-size: 16px;
 }
 
-.addBtn {
+.btn-default {
     padding: 9px 10px;
     background-color: rgb(35, 32, 24);
     color: white;
@@ -68,24 +71,46 @@ header {
     border-radius: 2px;
 }
 
-.addBtn:hover {
-    background-color: #2ab53a;
+.btn-add:hover {
+    background-color: #3f48cc;
     color: white;
 }
 
-.close:hover {
+.btn-new-match:hover {
+    background-color: #3f48cc;
+    color: white;
+}
+
+.btn-finish:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+.trash:hover {
     color: #f44336;
     font-weight: bolder;
 }
 
-.containerHistoric {
+.headFooterJogo {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 0 40px;
+}
+
+.tblJogo {
+    display: flex;
+    justify-content: center;
+}
+
+.tblHistoric {
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
 }
 
-.containerHistoric table,
+.tblHistoric table,
 th,
 td {
     border: 1px solid black;
@@ -98,16 +123,16 @@ td {
     text-align: center;
 }
 
-.containerHistoric table {
+.tblHistoric table {
     background-color: white;
     width: 75%;
 }
 
-.containerHistoric tr:nth-child(odd) {
+.tblHistoric tr:nth-child(odd) {
     background-color: #eee;
 }
 
-.containerHistoric tr:hover {
+.tblHistoric tr:hover {
     background: rgb(200, 199, 199);
 }
 
@@ -119,28 +144,124 @@ td {
     justify-content: center;
 }
 
-.containerJogo table,
+table,
 th,
 td {
-    border: 1px solid black;
     border-collapse: collapse;
     cursor: pointer;
     position: relative;
     padding: 12px 8px 12px 10px;
-    font-size: 18px;
     transition: 0.2s;
     text-align: center;
 }
 
-.containerJogo table {
+.tblJogo table {
     background-color: white;
-    width: 75%;
+    width: 50%;
 }
 
-/* .containerJogo tr:nth-child(odd) {
+/* .tblJogo tr:nth-child(odd) {
     background-color: #eee;
 } */
 
-.containerJogo td:hover {
+.tblJogo td:hover {
     background: rgb(200, 199, 199);
+}
+
+.tdJogo {
+    border: none;
+    font-weight: bold;
+    font-size: 80px;
+    height: 100px;
+    min-width: 100px;
+}
+
+.tdJogo:hover {
+    background-color: #CBCBCB;
+}
+
+#td0 {
+    border-top: none;
+    border-right: 10px solid #000000;
+    border-bottom: 10px solid #000000;
+    border-left: none;
+}
+
+#td1 {
+    border-top: none;
+    border-right: 10px solid #000000;
+    border-bottom: 10px solid #000000;
+    border-left: 10px solid #000000;
+}
+
+#td2 {
+    border-top: none;
+    border-right: none;
+    border-bottom: 10px solid #000000;
+    border-left: 10px solid #000000;
+}
+
+#td3 {
+    border-top: 10px solid #000000;
+    border-right: 10px solid #000000;
+    border-bottom: 10px solid #000000;
+    border-left: none;
+}
+
+#td4 {
+    border-top: 10px solid #000000;
+    border-right: 10px solid #000000;
+    border-bottom: 10px solid #000000;
+    border-left: 10px solid #000000;
+}
+
+#td5 {
+    border-top: 10px solid #000000;
+    border-right: none;
+    border-bottom: 10px solid #000000;
+    border-left: 10px solid #000000;
+}
+
+#td6 {
+    border-top: 10px solid #000000;
+    border-right: 10px solid #000000;
+    border-bottom: none;
+    border-left: none;
+}
+
+#td7 {
+    border-top: 10px solid #000000;
+    border-right: 10px solid #000000;
+    border-bottom: none;
+    border-left: 10px solid #000000;
+}
+
+#td8 {
+    border-top: 10px solid #000000;
+    border-right: none;
+    border-bottom: none;
+    border-left: 10px solid #000000;
+}
+
+#jogoNomeX {
+    color: #002BFF;
+    min-width: 200px;
+    background-color: #FFFFFF;
+    padding: 5px 30px;
+    border-radius: 40px 10px;
+}
+
+#jogoNomeO {
+    color: #0d7701;
+    min-width: 200px;
+    background-color: #FFFFFF;
+    padding: 5px 30px;
+    border-radius: 10px 40px;
+}
+
+#jogoVelha {
+    min-width: 200px;
+    background-color: #FFFFFF;
+    padding: 5px 30px;
+    border-radius: 40px 10px;
 }
