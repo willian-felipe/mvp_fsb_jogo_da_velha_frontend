@@ -6,9 +6,9 @@ var dataHistoric = [];
   Função para criar um botão close para cada item da lista
   --------------------------------------------------------------------------------------
 */
-const insertButton = (parent) => {
+const includeBtnTrash = (parent) => {
   // <img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15px" height="15px"></img>
-
+  
   let img = document.createElement("img");
   img.src = "https://cdn-icons-png.flaticon.com/512/126/126468.png";
   img.style.width = "15px";
@@ -23,6 +23,15 @@ const insertButton = (parent) => {
   // span.className = "close";
   // span.appendChild(txt);
   // parent.appendChild(span);
+}
+
+const includeBtnContinue = (parent) => {
+  let span = document.createElement("span");
+  let txt = document.createTextNode("Clique aqui!");
+  span.className = "retomar";
+  span.appendChild(txt);
+
+  parent.appendChild(span);
 }
 
 /*
@@ -54,6 +63,33 @@ const removeElement = () => {
   }
 }
 
+const continuarDisputa = () => {
+  let contPartida = document.getElementsByClassName("retomar");
+
+  for (let i = 0; i < contPartida.length; i++) {
+    contPartida[i].onclick = function () {
+      let div = this.parentElement.parentElement;
+
+      const jogX = div.getElementsByTagName('td')[0].innerHTML;
+      const jogO = div.getElementsByTagName('td')[2].innerHTML;
+
+      if (confirm("Deseja retomar a disputa entre " + jogX + " vs " + jogO + "?")) {
+        for (let i = 0; i < dataHistoric.length; i++) {
+          if (jogX == dataHistoric[i].nomeX && jogO == dataHistoric[i].nomeO) {
+            partidaCorrente = dataHistoric[i];
+
+            setJogadores();
+            resetMatch();
+            criaJogo();
+            break;
+          }
+        }
+      }
+    }
+  }
+}
+
+
 const resetTable = () => {
   var table = document.getElementById('tblHistoric');
   const rows = Array.from(table.rows);
@@ -80,12 +116,15 @@ const insertList = (item) => {
     var cel = row.insertCell(i);
     cel.textContent = itemRow[i];
   }
-  insertButton(row.insertCell(-1));
+  includeBtnContinue(row.insertCell(-1));
+  includeBtnTrash(row.insertCell(-1));
 
   document.getElementById("nomeX").value = "";
   document.getElementById("nomeO").value = "";
 
+  continuarDisputa();
   removeElement();
+
 }
 
 

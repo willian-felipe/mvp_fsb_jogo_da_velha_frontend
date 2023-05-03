@@ -50,9 +50,11 @@ function resultado(data) {
       msgConfir = "O vencedor foi a : " + data.vencedor + "."
     }
 
-    if (confirm(msgConfir + "\n\nDeseja iniciar uma 'NOVA PARTIDA'?")) {
-      resetMatch();
-    }
+    setTimeout(function() {
+      if (confirm(msgConfir + "\n\nDeseja iniciar uma 'NOVA PARTIDA'?")) {
+        resetMatch();
+      }
+    }, 250);
   }
 }
 
@@ -68,7 +70,7 @@ function resetMatch() {
 
   for (let i = 0; i < jogoCorrent.length; i++) {
     document.getElementById("td" + i).innerText = jogoCorrent[i];
-    document.getElementById("td" + i).style.backgroundColor = "#FFFFFF";
+    document.getElementById("td" + i).style.backgroundColor = "transparent";
   }
 }
 
