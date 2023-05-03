@@ -15,7 +15,7 @@ function definirJogada(index) {
   } else {
     jogoCorrent[index] = turno;
     setPosicoes();
-    
+
 
     // Chamar a função que verifica se houve vencedor
     put(partidaCorrente.id, jogoCorrent);
@@ -41,7 +41,7 @@ function resultado(data) {
 
   if (data.finalizado) {
     let msgConfir = "O vencedor foi o jogador de: " + data.vencedor + ".";
-    if(data.vencedor === "VELHA") {
+    if (data.vencedor === "VELHA") {
       for (let i = 0; i < jogoCorrent.length; i++) {
         document.getElementById("td" + i).innerText = jogoCorrent[i];
         document.getElementById("td" + i).style.backgroundColor = "#ED9292";
@@ -50,7 +50,7 @@ function resultado(data) {
       msgConfir = "O vencedor foi a : " + data.vencedor + "."
     }
 
-    setTimeout(function() {
+    setTimeout(function () {
       if (confirm(msgConfir + "\n\nDeseja iniciar uma 'NOVA PARTIDA'?")) {
         resetMatch();
       }
@@ -70,7 +70,7 @@ function resetMatch() {
 
   for (let i = 0; i < jogoCorrent.length; i++) {
     document.getElementById("td" + i).innerText = jogoCorrent[i];
-    document.getElementById("td" + i).style.backgroundColor = "transparent";
+    document.getElementById("td" + i).style.backgroundColor = "";
   }
 }
 
