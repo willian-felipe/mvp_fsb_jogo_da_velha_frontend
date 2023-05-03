@@ -93,6 +93,14 @@ header {
     font-weight: bolder;
 }
 
+.retomar {
+    background-color: blue;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
 .headFooterJogo {
     display: flex;
     justify-content: space-between;
