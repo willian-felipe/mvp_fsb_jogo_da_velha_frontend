@@ -1,5 +1,4 @@
 body {
-    /* background-image: linear-gradient(to bottom, #3f48cc, #a9a9a9, #3f48cc); */
     background-image: radial-gradient(circle at center, #FFFFFF 50%, #3f48cc 93%, #FFFFFF 0%);
 }
 
@@ -166,13 +165,8 @@ td {
 }
 
 .tblJogo table {
-    /* background-color: white; */
     width: 50%;
 }
-
-/* .tblJogo tr:nth-child(odd) {
-    background-color: #eee;
-} */
 
 .tblJogo td:hover {
     background: rgb(200, 199, 199);
